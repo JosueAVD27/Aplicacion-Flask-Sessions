@@ -25,53 +25,53 @@
             <a href="/" class="logo">JOSUE V</a>
             <div class="titulo">
                 <h1>Sistema de rastreo de contactos simplificado para COVID-19</h1>
-                    <!--BOTON PARA LOGIN-->
-                <a align="center" type="submit" href="/login" class="btn boton_agregar">Iniciar Sesion</a>
-
-                <!--BOTON PARA Registro-->
-                <a align="center" type="submit" href="/registro" class="btn boton_agregar">Registrarse</a>
             </div>
         </div>
     </header>
 
-    <div class="cabezera_titulo">
-        <h1 align="center"> Clientes potenciales de covid </h1>
+
+    <div class="">
+        <h1 align="center">Registrar Usuario</h1>
     </div>
+
+    <!-- INGRESO DE DATOS Para iniciar usuario -->
+    <section class="Ingreso_datos_usuario">
+        <form method="post" action="{{url_for('enviar')}}">
+            <div align="center" class="form-group">
+                <!--FORMULARIO DE INGRESO DE DATOS-->
+                <div class="form-group col-md-6">
+                    <!-- DESCRIPCION DE usuario -->
+                    <label><b>Usuario</b></label>
+                    <input type="text" class="form-control" placeholder="Ingrese su usuario" name="nombre_usuario">
+                </div>
     
+                <div class="form-group col-md-6">
+                    <!-- CORREO ELECTRONICO -->
+                    <label><b>CORREO ELECTRONICO</b></label>
+                    <input type="email" class="form-control" placeholder="Ingrese un correo electronico" name="email_usuario">
+                </div>
     
-    <section class="lista_datos">
-        <!--CONTROLADOR 2 - TABLA DE DATOS-->
-        <table class="table">
-            <thead class="table-dark">
-                <tr>
-                    <!--INGRESAMOS LAS VARIABLES QUE VAMOS A RECIBIR-->
-                    <th scope="col">Usuario</th>
-                    <th scope="col">CORREO ELECTRONICO</th>
-                    <th scope="col">CASO COVID</th>
-                    <th scope="col">ELIMINAR</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!--ACCEDEMOS A LA LISTA CON UN FOR-->
-                {% for usuario in lista_clientes %}
-                <tr>
-                    <!--INERTA LA TAREA-->
-                    <th>{{usuario.nombre_usuario}}</th>
-                    <!--INSERTA EL CORREO ELECTRONICO-->
-                    <th>{{usuario.email_usuario}}</th>
-                    <!--INSERTA EL CASO COVID-->
-                    <th>{{usuario.Contagio_Covid}}</th>
-                    <!--BOTON PARA ELIMINAR LA FILA-->
-                    <th>
-                        <button type="button" onClick="eliminarDiv(this)" class="btn btn-sm btn-danger pull-right">X</button>
-                    </th>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        <!--BOTON BORRAR TODOS LOS CAMPOS DE LA TABLA-->
-        <form action="{{url_for('borrar')}}" method="post" class="card-body">
-            <button type="submit" class="btn boton_eliminar">BORRAR</button>
+                <div class="form-group col-md-6">
+                    <!-- contraseña de usuario -->
+                    <label><b>Contraseña</b></label>
+                    <input type="password" class="form-control" placeholder="Ingrese una contraseña" name="contrasenia_usuario">
+                </div>
+
+                <!-- LISTA DE OPCIONES -->
+                <div class="form-group col-md-6">
+                    <!-- LISTA DE PRIORIDAD -->
+                    <label><b>Contagio COVID</b></label>
+                    <select class="form-control" name="Contagio_Covid">
+                        <option value=""></option>
+                        <option value="Normal">Normal</option>
+                        <option value="Caso">Caso</option>
+                        <option value="Cercano">Cercano</option>
+                    </select>
+                </div>
+    
+            </div>
+            <!--BOTON PARA ENVIAR DATOS A LA TABLA-->
+            <button type="submit" class="btn boton_agregar">Registro</button>
         </form>
     </section>
     
@@ -131,6 +131,7 @@ function eliminarDiv(e){
         padding: 0;
         width: 1000px;
     }
+
 
     /*Ingreso datos*/
     .Ingreso_datos_usuario{

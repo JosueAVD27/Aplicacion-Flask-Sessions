@@ -6,25 +6,51 @@ app = Flask(__name__, template_folder='templates')
 #Array donde almacenaremos los datos
 lista_clientes = []
 
-#Decorador para definir la ruta
+#Decorador para definir la ruta del inicio
 @app.route('/')
 def index():
     return render_template('index.html', lista_clientes = lista_clientes)
+
+#Decorador para definir la ruta del login
+@app.route('/login')
+def login():
+    return render_template('login.html', lista_clientes = lista_clientes)
+
+#Decorador para definir la ruta del login
+@app.route('/registro')
+def registro():
+    return render_template('registro.html', lista_clientes = lista_clientes)
 
 #Controlador de la ruta de envio de datos
 @app.route('/enviar', methods=['POST'])                             
 def enviar():                                                       #crea la funcion enviar
     if request.method == 'POST':                                    #Condicion que solicita que el metodo sea igual a post
-        descripcion_tarea = request.form['descripcion_tarea']       #Extrae los datos ingresados en el input de la descripcion de la tarea
-        email_tarea = request.form['email_tarea']                   #Extrae los datos ingresados en el input del correo electronico
-        prioridad_tarea = request.form['prioridad_tarea']           #Extrae los datos ingresados en el input de la prioridad
+        nombre_usuario = request.form['nombre_usuario']   #Extrae los datos ingresados en el input de la descripcion del usuario
+        email_usuario = request.form['email_usuario']                   #Extrae los datos ingresados en el input del correo electronico
+        contrasenia_usuario = request.form['contrasenia_usuario']           #Extrae los datos ingresados en el input de la contraseña
+        Contagio_Covid = request.form['Contagio_Covid']
         #Crea la condicion de que no guarde el registro cuando el campo de la tarea y el del correo estan vacios
-        if descripcion_tarea == '' or email_tarea == '' or prioridad_tarea == '':            
-            return redirect(url_for('index'))                       
+        if nombre_usuario == '' or email_usuario == '' or contrasenia_usuario == '' or Contagio_Covid == '':            
+            return redirect(url_for('login'))                       
         else:
             #Agrega a la lista los campos llenos
-            lista_clientes.append({'descripcion_tarea': descripcion_tarea, 'email_tarea': email_tarea, 'prioridad_tarea': prioridad_tarea })
+            lista_clientes.append({'nombre_usuario': nombre_usuario, 'email_usuario': email_usuario, 'contrasenia_usuario': contrasenia_usuario, 'Contagio_Covid': Contagio_Covid})
             return redirect(url_for('index'))
+
+#Controlador de la ruta de envio de datos
+@app.route('/ingresar', methods=['POST'])                             
+def ingresar():                                                       #crea la funcion enviar
+    if request.method == 'POST':                                    #Condicion que solicita que el metodo sea igual a post
+        nombre_usuario = request.form['nombre_usuario']   #Extrae los datos ingresados en el input de la descripcion del usuario
+        email_usuario = request.form['email_usuario']                   #Extrae los datos ingresados en el input del correo electronico
+        contrasenia_usuario = request.form['contrasenia_usuario']           #Extrae los datos ingresados en el input de la contraseña
+        #Crea la condicion de que no guarde el registro cuando el campo de la tarea y el del correo estan vacios
+        if nombre_usuario == '' or email_usuario == '' or contrasenia_usuario == '':            
+            return redirect(url_for('login'))                       
+        else:
+            #Agrega a la lista los campos llenos
+            return redirect(url_for('index'))
+
 
 #Controlador de la ruta para borrar los datos de la tabla
 @app.route('/borrar', methods=['POST'])
