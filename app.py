@@ -45,7 +45,7 @@ def ingresar():                                                       #crea la f
         email_usuario = request.form['email_usuario']                   #Extrae los datos ingresados en el input del correo electronico
         contrasenia_usuario = request.form['contrasenia_usuario']           #Extrae los datos ingresados en el input de la contraseña
         #Crea la condicion de que no guarde el registro cuando el campo de la tarea y el del correo estan vacios
-        if nombre_usuario == '' or email_usuario == '' or contrasenia_usuario == '':            
+        if nombre_usuario == '' or email_usuario == '' or contrasenia_usuario == '' or lista_clientes == []:            
             return redirect(url_for('login'))                       
         else:
             #Agrega a la lista los campos llenos
