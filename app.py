@@ -16,7 +16,7 @@ def index():
 def login():
     return render_template('login.html', lista_clientes = lista_clientes)
 
-#Decorador para definir la ruta del login
+#Decorador para definir la ruta del registro
 @app.route('/registro')
 def registro():
     return render_template('registro.html', lista_clientes = lista_clientes)
@@ -25,10 +25,10 @@ def registro():
 @app.route('/enviar', methods=['POST'])                             
 def enviar():                                                       #crea la funcion enviar
     if request.method == 'POST':                                    #Condicion que solicita que el metodo sea igual a post
-        nombre_usuario = request.form['nombre_usuario']   #Extrae los datos ingresados en el input de la descripcion del usuario
-        email_usuario = request.form['email_usuario']                   #Extrae los datos ingresados en el input del correo electronico
-        contrasenia_usuario = request.form['contrasenia_usuario']           #Extrae los datos ingresados en el input de la contraseña
-        Contagio_Covid = request.form['Contagio_Covid']
+        nombre_usuario = request.form['nombre_usuario']             #Extrae los datos ingresados en el input de la descripcion del usuario
+        email_usuario = request.form['email_usuario']               #Extrae los datos ingresados en el input del correo electronico
+        contrasenia_usuario = request.form['contrasenia_usuario']   #Extrae los datos ingresados en el input de la contraseña
+        Contagio_Covid = request.form['Contagio_Covid']                #Extrae los datos ingresados en el listado del estado de COVID
         #Crea la condicion de que no guarde el registro cuando el campo de la tarea y el del correo estan vacios
         if nombre_usuario == '' or email_usuario == '' or contrasenia_usuario == '' or Contagio_Covid == '':            
             return redirect(url_for('login'))                       
@@ -37,18 +37,18 @@ def enviar():                                                       #crea la fun
             lista_clientes.append({'nombre_usuario': nombre_usuario, 'email_usuario': email_usuario, 'contrasenia_usuario': contrasenia_usuario, 'Contagio_Covid': Contagio_Covid})
             return redirect(url_for('index'))
 
-#Controlador de la ruta de envio de datos
+#Controlador de la ruta de comparacion de datos
 @app.route('/ingresar', methods=['POST'])                             
-def ingresar():                                                       #crea la funcion enviar
-    if request.method == 'POST':                                    #Condicion que solicita que el metodo sea igual a post
-        nombre_usuario = request.form['nombre_usuario']   #Extrae los datos ingresados en el input de la descripcion del usuario
+def ingresar():                                                         #crea la funcion ingresar
+    if request.method == 'POST':                                        #Condicion que solicita que el metodo sea igual a post
+        nombre_usuario = request.form['nombre_usuario']                 #Extrae los datos ingresados en el input de la descripcion del usuario
         email_usuario = request.form['email_usuario']                   #Extrae los datos ingresados en el input del correo electronico
-        contrasenia_usuario = request.form['contrasenia_usuario']           #Extrae los datos ingresados en el input de la contraseña
+        contrasenia_usuario = request.form['contrasenia_usuario']       #Extrae los datos ingresados en el input de la contraseña
         #Crea la condicion de que no guarde el registro cuando el campo de la tarea y el del correo estan vacios
-        if nombre_usuario == '' or email_usuario == '' or contrasenia_usuario == '' or lista_clientes == []:            
+        if nombre_usuario == '' or email_usuario == '' or contrasenia_usuario == '' or lista_clientes == [] or lista_clientes != lista_clientes:            
             return redirect(url_for('login'))                       
         else:
-            #Agrega a la lista los campos llenos
+            #re dirije a la pagina de inicio
             return redirect(url_for('index'))
 
 
