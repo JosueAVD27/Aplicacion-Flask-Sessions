@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/estilos.css') }}">
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+    <title>LOGIN</title>
+</head>
+<body>
+    <!-- CABEZERA -->
+    <header class="cabezera">
+        <div class="contenedor-logo">
+            <a href="/" class="logo">JOSUE V</a>
+            <div class="titulo">
+                <h1>Sistema de rastreo de contactos simplificado para COVID-19</h1>
+            </div>
+        </div>
+    </header>
+
+    <div class="">
+        <h1 align="center">INICIAR SESIÓN</h1>
+    </div>
+
+    <!-- INGRESO DE DATOS Para iniciar usuario -->
+    <section class="Ingreso_datos_usuario">
+        <form method="post" action="{{url_for('ingresar')}}">
+            <div align="center" class="form-group">
+                <!--FORMULARIO DE INGRESO DE DATOS-->
+                <div class="form-group col-md-6">
+                    <!-- DESCRIPCION DE usuario -->
+                    <label><b>Usuario</b></label>
+                    <input type="text" class="form-control" placeholder="Ingrese su usuario" name="nombre_usuario">
+                </div>
+    
+                <div class="form-group col-md-6">
+                    <!-- CORREO ELECTRONICO -->
+                    <label><b>CORREO ELECTRONICO</b></label>
+                    <input type="email" class="form-control" placeholder="Ingrese un correo electronico" name="email_usuario">
+                </div>
+    
+                <div class="form-group col-md-6">
+                    <!-- DESCRIPCION DE usuario -->
+                    <label><b>Contraseña</b></label>
+                    <input type="password" class="form-control" placeholder="Ingrese una contraseña" name="contrasenia_usuario">
+                </div>
+    
+            </div>
+            <!--BOTON PARA ENVIAR DATOS A LA TABLA-->
+            <button type="submit" class="btn boton_agregar">Iniciar sesión</button>
+        </form>
+    </section>
+    
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="contenedor-footer">
+          <small>&copy; 2022 <b>Universidad de las Fuerzas Armadas ESPE</b>
+        </div>
+      </footer>
+</body>
+</html>
