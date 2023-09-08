@@ -21,7 +21,7 @@ Para ejecutar esta aplicación en tu entorno local, necesitas tener instalado lo
 
 1. Clona este repositorio en tu máquina local usando el siguiente comando:
 ```bash
-   git clone https://github.com/tu-usuario/tu-repositorio.git
+   git clone https://github.com/JosueAVD27/Aplicacion-Flask-Sessions.git
 ```
 
 1. Navega al directorio del proyecto:
